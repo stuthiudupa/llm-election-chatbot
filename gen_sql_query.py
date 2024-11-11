@@ -1,3 +1,5 @@
+
+
 """
 This example is to show how to load an LLM, use a prompt and retrieve results
 We illustrate the use of LangChain for a few shot inferencing
@@ -13,10 +15,10 @@ Our hard limit is the maximum context size, but we must also consider the cost o
 Fewer tokens mean a cheaper service and faster completions from the LLM.
 """
 
-from load_llm import load_llm
+# from load_llm import load_llm # only to be used when model is available locally   
 from langchain import PromptTemplate, FewShotPromptTemplate
 from langchain.prompts.example_selector import LengthBasedExampleSelector
-
+from get_completion_client import get_completion    # to be used when the model has a REST end point
 # create our examples
 examples = [
     {
@@ -55,6 +57,8 @@ example_prompt = PromptTemplate(
     template=example_template
 )
 
+# examples will vary as per the example selector
+# need to figure out how the example selector works, and what is the expected output of this
 
 example_selector = LengthBasedExampleSelector(
     examples=examples,
@@ -72,7 +76,7 @@ examples:
 # and the suffix our user input and output indicator
 suffix = """
 User: {query}
-AI: """
+AI: """ # prints llm response after suffix
 
 # now create the few shot prompt template
 dynamic_prompt_template = FewShotPromptTemplate(
@@ -85,17 +89,18 @@ dynamic_prompt_template = FewShotPromptTemplate(
 )
 
 
+print("-------- Longer query will select fewer examples in order to preserve the context ----------")
+
 query = """If I am in America, and I want to call someone in another country, I'm
 thinking maybe Europe, possibly western Europe like France, Germany, or the UK,
 what is the best way to do that?"""
+
 
 prompt = dynamic_prompt_template.format(query=query)
 print(prompt)
 
 '''
 print(dynamic_prompt_template.format(query="How do birds fly?"))
-print("-------- Longer query will select fewer examples in order to preserve the context ----------")
-
 print("-------- Shorter query for LLM ----------")
 query = "How is the weather in your city today?"
 prompt = dynamic_prompt_template.format(query=query)
@@ -106,5 +111,4 @@ print(prompt)
 # print(
 #     llm(prompt)
 # )
-
-get_com
+print(get_completion(prompt))

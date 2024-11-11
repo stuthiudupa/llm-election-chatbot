@@ -59,7 +59,7 @@ class SQLRuntime(object):
         msg["input"] = statement
 
         result = {
-            "code": code,
+            "code": code, # success code
             "msg": msg,
             "data": data
         }
