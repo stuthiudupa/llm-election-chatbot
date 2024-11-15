@@ -5,7 +5,7 @@ import json
 import sqlite3
 import pandas as pd
 import csv
-# from dbhelper import DbHelper
+from dbhelper import DbHelper
 
 
 def load_data_from_csv(name, end=58925):
@@ -26,7 +26,7 @@ def load_data_from_csv(name, end=58925):
                 print("TURNOUT found, skipping")
                 continue
             item = {}
-            print(line)
+            # print(line)
             for key, val in zip(keys, line):
                 item[key] = val
             data.append(item)
@@ -53,31 +53,31 @@ def query_sql(conn, query):
     return result
 
 
-# def create_db(docs):
-#     dbh = DbHelper()
-#     for doc in docs:
-#         _id = dbh.insert_one(doc)
-#         print(type(_id), _id)
-#     return
+def create_db(docs):
+    dbh = DbHelper("maha_2019")
+    for doc in docs:
+        _id = dbh.insert_one(doc, "maha_2019")
+        print(type(_id), _id)
+    return
 
 
 if __name__ == '__main__':
     # create a connection to sql db called elections.db
-    # conn = sqlite3.connect('elections.db')
+    conn = sqlite3.connect('elections.db')
 
-    filename = r"maha_results_2019.csv"
+    filename = r"cleaned_csv/clean_maha_2019.csv"
     data = load_data_from_csv(filename, end=5)
-    # print(data)
+    # print(data[0])
 
-    # # print(data)
-    # create_db(data)
+    # # # print(data)
+    create_db(data)
 
     # res = load_data_from_csv_to_db(filename, conn)
-    # print(res)
+    # # print(res)
 
-    # query = "SELECT * FROM elections_2019 WHERE [State-UT Code & Name]='Andhra Pradesh';"
-    # results = query_sql(conn, query)
-    # print(results)
+    query = 'SELECT rowid FROM elections_2019;'
+    results = query_sql(conn, query)
+    print(results)
 
     # keys = data.keys()
     # for i, item in enumerate(data):

@@ -6,7 +6,7 @@ import traceback
 import sqlite3
 
 # MODIFY THE PATH BELOW FOR YOUR SYSTEM
-my_db = r"your path"
+my_db = r"elections.db"
 
 class SQLRuntime(object):
     def __init__(self, dbname=None):
@@ -96,7 +96,7 @@ def sql_runtime(statement):
 
 if __name__ == '__main__':
     stmt = """
-    SELECT * FROM elections_2019;
+    SELECT COUNT(*) FROM elections_2019;
     """
     # stmt = input("Enter stmt: ")
     sql = SQLRuntime()

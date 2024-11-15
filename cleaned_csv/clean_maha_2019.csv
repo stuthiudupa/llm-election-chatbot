@@ -1,4 +1,4 @@
-state_name,assembly_constituency_number,assembly_ constituency_name,candidate_name,sex,age,category,party_name,party_symbol,general_votes,postal_votes,secured_votes,percentage_votes_polled,total_voters
+state_name,assembly_constituency_number,assembly_constituency_name,candidate_name,sex,age,category,party_name,party_symbol,general_votes,postal_votes,secured_votes,percentage_votes_polled,total_voters
 Maharashtra,1,Akkalkuwa ,1 ADV. K. C. PADAVI,MALE,61.0,ST,INC,Hand,82509,261.0,82770,41.25545786,278888.0
 Maharashtra,1,Akkalkuwa ,2 AAMSHYA FULJI PADAVI,MALE,51.0,ST,SHS,Bow and Arrow,80532,142.0,80674,40.21073828,278888.0
 Maharashtra,1,Akkalkuwa ,3 NAGESH DILVARSING PADVI,MALE,44.0,ST,IND,Gas Stove,21583,81.0,21664,10.79809398,278888.0
